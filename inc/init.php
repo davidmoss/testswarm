@@ -140,7 +140,8 @@ if ( !is_readable( $swarmInstallDir . '/' . $swarmAutoLoadClasses['UA'] ) ) {
 require_once __DIR__ . '/utilities.php';
 
 $defaultSettingsJSON = "$swarmInstallDir/config/defaultSettings.json";
-$localSettingsPHP = "$swarmInstallDir/config/localSettings.php";
+#$localSettingsPHP = "$swarmInstallDir/config/localSettings.php";
+$localSettingsJSON = "$swarmInstallDir/config/localSettings.json";
 
 // Verify that the configuration files exists and are readable
 if ( !is_readable( $defaultSettingsJSON ) || !is_readable( $localSettingsPHP ) ) {
@@ -148,7 +149,8 @@ if ( !is_readable( $defaultSettingsJSON ) || !is_readable( $localSettingsPHP ) )
 }
 
 $defaultSettings = json_decode( file_get_contents( $defaultSettingsJSON ) );
-$localSettings = require $localSettingsPHP;
+#$localSettings = require $localSettingsPHP;
+$localSettings = json_decode( file_get_contents( $localSettingsJSON ) );
 if ( !$defaultSettings ) {
 	swarmInitError( 'Unable to parse defaultSettings.json' );
 }
