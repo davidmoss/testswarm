@@ -83,6 +83,13 @@ class WipejobAction extends Action {
 						swarmdb_dateformat( SWARM_NOW ),
 						$runRow->id
 					));
+					// Remove any previous testresults so the browsers can redo them
+					$db->query(str_queryf(
+						"DELETE
+						FROM runresults
+						WHERE run_id = %u;",
+						$runRow->id
+					));
 				}
 			}
 		}
